@@ -12,3 +12,6 @@
 
 </div>
 
+<app-pagination [totalPages]="productsResource.value()?.pages ?? 0" [currentPage]="paginationService.currentPage()" />
+
+
