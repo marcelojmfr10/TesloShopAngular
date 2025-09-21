@@ -34,6 +34,7 @@ export class AuthService {
 
   user = computed(() => this._user());
   token = computed(() => this._token());
+  isAdmin = computed(() => this._user()?.roles.includes('admin') ?? false);
 
   login(email: string, password: string): Observable<boolean> {
     return this.http.post<AuthResponse>(`${baseUrl}/auth/login`, { email, password }).pipe(
@@ -53,7 +54,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (!token) {
       this.logout();
-      of(false);
+      return of(false);
     }
 
     return this.http.get<AuthResponse>(`${baseUrl}/auth/check-status`, {
