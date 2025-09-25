@@ -28,10 +28,12 @@ export class ProductCarouselComponent implements AfterViewInit {
     const element = this.swiperDiv().nativeElement;
     if (!element) return;
 
+    const hasMultipleImages = this.images().length > 1;
+
     const swiper = new Swiper(element, {
       // Optional parameters
       direction: 'horizontal',
-      loop: true,
+      loop: hasMultipleImages,
 
       modules: [
         Navigation, Pagination
@@ -40,18 +42,23 @@ export class ProductCarouselComponent implements AfterViewInit {
       // If we need pagination
       pagination: {
         el: '.swiper-pagination',
+        enabled: hasMultipleImages
       },
 
       // Navigation arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+        enabled: hasMultipleImages
       },
 
       // And if we need scrollbar
       scrollbar: {
         el: '.swiper-scrollbar',
       },
+
+      allowTouchMove: hasMultipleImages,
+      autoplay: false,
     });
   }
 
