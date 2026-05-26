@@ -5,12 +5,11 @@ import { firstValueFrom } from 'rxjs';
 
 export const IsAdminGuard: CanMatchFn = async (
   route: Route,
-  segments: UrlSegment[]
+  segments: UrlSegment[],
 ) => {
-
   const authService = inject(AuthService);
 
   await firstValueFrom(authService.checkStatus());
 
   return authService.isAdmin();
-}
+};

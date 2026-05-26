@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, input, OnChanges, SimpleChanges, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  input,
+  OnChanges,
+  SimpleChanges,
+  viewChild,
+} from '@angular/core';
 
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -13,11 +21,11 @@ import { ProductImagePipe } from '@products/pipes/product-image.pipe';
   imports: [ProductImagePipe],
   templateUrl: './product-carousel.component.html',
   styles: `
-  .swiper {
-    width: 100%;
-    height: 500px;
-  }
-  `
+    .swiper {
+      width: 100%;
+      height: 500px;
+    }
+  `,
 })
 export class ProductCarouselComponent implements AfterViewInit, OnChanges {
   images = input.required<string[]>();
@@ -33,7 +41,8 @@ export class ProductCarouselComponent implements AfterViewInit, OnChanges {
 
     this.swiper.destroy(true, true);
 
-    const paginationElement: HTMLDivElement = this.swiperDiv().nativeElement?.querySelector('.swiper-pagination');
+    const paginationElement: HTMLDivElement =
+      this.swiperDiv().nativeElement?.querySelector('.swiper-pagination');
     paginationElement.innerHTML = '';
 
     setTimeout(() => {
@@ -56,21 +65,19 @@ export class ProductCarouselComponent implements AfterViewInit, OnChanges {
       direction: 'horizontal',
       loop: hasMultipleImages,
 
-      modules: [
-        Navigation, Pagination
-      ],
+      modules: [Navigation, Pagination],
 
       // If we need pagination
       pagination: {
         el: '.swiper-pagination',
-        enabled: hasMultipleImages
+        enabled: hasMultipleImages,
       },
 
       // Navigation arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-        enabled: hasMultipleImages
+        enabled: hasMultipleImages,
       },
 
       // And if we need scrollbar
@@ -82,5 +89,4 @@ export class ProductCarouselComponent implements AfterViewInit, OnChanges {
       autoplay: false,
     });
   }
-
 }

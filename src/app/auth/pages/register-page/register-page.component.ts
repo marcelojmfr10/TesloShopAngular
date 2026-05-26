@@ -1,5 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 
@@ -9,7 +14,6 @@ import { AuthService } from '@auth/services/auth.service';
   templateUrl: './register-page.component.html',
 })
 export class RegisterPageComponent {
-
   fb = inject(FormBuilder);
   hasError = signal(false);
   isPosting = signal(false);
@@ -32,20 +36,24 @@ export class RegisterPageComponent {
       return;
     }
 
-    const { email = '', password = '', fullName = '' } = this.registerForm.value;
+    const {
+      email = '',
+      password = '',
+      fullName = '',
+    } = this.registerForm.value;
 
-    this.authService.register(email, password, fullName).subscribe((isAuthenticated) => {
-      if (isAuthenticated) {
-        this.router.navigateByUrl('/');
-        return;
-      }
+    this.authService
+      .register(email, password, fullName)
+      .subscribe((isAuthenticated) => {
+        if (isAuthenticated) {
+          this.router.navigateByUrl('/');
+          return;
+        }
 
-      this.hasError.set(true);
-      setTimeout(() => {
-        this.hasError.set(false);
-      }, 2000);
-    })
+        this.hasError.set(true);
+        setTimeout(() => {
+          this.hasError.set(false);
+        }, 2000);
+      });
   }
-
-
 }

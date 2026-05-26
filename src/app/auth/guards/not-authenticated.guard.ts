@@ -5,18 +5,17 @@ import { firstValueFrom } from 'rxjs';
 
 export const NotAuthenticatedGuard: CanMatchFn = async (
   route: Route,
-  segments: UrlSegment[]
+  segments: UrlSegment[],
 ) => {
-
   const authService = inject(AuthService);
   const router = inject(Router);
 
   const isAuthenticated = await firstValueFrom(authService.checkStatus());
 
-  if(isAuthenticated) {
+  if (isAuthenticated) {
     router.navigateByUrl('/');
     return false;
   }
 
   return true;
-}
+};

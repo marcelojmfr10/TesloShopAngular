@@ -11,21 +11,18 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   templateUrl: './product-admin-page.component.html',
 })
 export class ProductAdminPageComponent {
-
   productService = inject(ProductsService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
 
   productId = toSignal(
-    this.activatedRoute.params.pipe(
-      map(params => params['id'])
-    )
+    this.activatedRoute.params.pipe(map((params) => params['id'])),
   );
 
   productResource = rxResource({
     request: () => ({ id: this.productId() }),
     loader: ({ request }) => {
-      return this.productService.getProductById(request.id)
+      return this.productService.getProductById(request.id);
     },
   });
 
@@ -33,6 +30,5 @@ export class ProductAdminPageComponent {
     if (this.productResource.error()) {
       this.router.navigate(['/admin/products']);
     }
-  })
-
+  });
 }

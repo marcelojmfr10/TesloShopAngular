@@ -1,4 +1,10 @@
-import { Component, computed, input, linkedSignal, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  input,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -7,7 +13,6 @@ import { RouterLink } from '@angular/router';
   templateUrl: './pagination.component.html',
 })
 export class PaginationComponent {
-
   currentPage = input<number>(1);
   totalPages = input<number>(0);
 

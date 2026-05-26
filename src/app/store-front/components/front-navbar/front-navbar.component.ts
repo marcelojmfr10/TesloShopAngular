@@ -8,7 +8,5 @@ import { AuthService } from '@auth/services/auth.service';
   templateUrl: './front-navbar.component.html',
 })
 export class FrontNavbarComponent {
-
   authService = inject(AuthService);
-
- }
+}

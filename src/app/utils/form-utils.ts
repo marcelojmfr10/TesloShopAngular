@@ -78,7 +78,7 @@ export class FormUtils {
 
   static getFieldErrorInArray(
     formArray: FormArray,
-    index: number
+    index: number,
   ): string | null {
     if (formArray.controls.length === 0) return null;
 
@@ -97,7 +97,7 @@ export class FormUtils {
   }
 
   static async checkingServerResponse(
-    control: AbstractControl
+    control: AbstractControl,
   ): Promise<ValidationErrors | null> {
     console.log('Validando contra servidor');
 

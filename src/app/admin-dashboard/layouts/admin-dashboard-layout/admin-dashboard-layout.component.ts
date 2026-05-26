@@ -8,10 +8,6 @@ import { AuthService } from '@auth/services/auth.service';
   templateUrl: './admin-dashboard-layout.component.html',
 })
 export class AdminDashboardLayoutComponent {
-
   authService = inject(AuthService);
   user = computed(() => this.authService.user());
-
-
-
 }

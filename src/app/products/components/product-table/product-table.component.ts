@@ -10,7 +10,5 @@ import { ProductImagePipe } from '@products/pipes/product-image.pipe';
   templateUrl: './product-table.component.html',
 })
 export class ProductTableComponent {
-
   products = input.required<Product[]>();
-
 }
